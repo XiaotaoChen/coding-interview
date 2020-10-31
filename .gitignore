@@ -1,0 +1,10 @@
+# binary file
+*.out
+test
+test.dSYM/
+
+# log file
+# *.log
+
+# .vscode
+.vscode
