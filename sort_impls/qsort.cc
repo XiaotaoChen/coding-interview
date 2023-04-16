@@ -13,7 +13,7 @@ void qsort(int *arr, int low, int high) {
     while(i < j) {
         while(arr[j] >= ref  && j>i) j--;
         if (j>i) arr[i] = arr[j];
-        while(arr[i] < ref && i < j) i++;
+        while(arr[i] <= ref && i < j) i++;
         if (i < j) arr[j] = arr[i];
     }
     arr[j] = ref;

@@ -15,7 +15,7 @@ int palindrome_minCut(std::string& str) {
         for (int j=i+1; j<n; j++) {
             if (str[i]==str[j]) {
                 if (j-i<2) dps[i][j] = 1;
-                else dps[i][j] = dps[i+1][j-1] + 1;
+                else dps[i][j] = dps[i+1][j-1];
             }
             else {
                 dps[i][j] = INT32_MAX;
