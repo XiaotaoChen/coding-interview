@@ -70,8 +70,10 @@ stack： 遍历root->val, root->right, root->left, 最后reverse 整个result数
 */
 void test_postorderTraversal() {
     TreeNode* root = new TreeNode(1);
-    TreeNode* r = new TreeNode(2);
-    TreeNode* rr = new TreeNode(3);
+    // TreeNode* l = new TreeNode(2);
+    TreeNode* r = new TreeNode(3);
+    TreeNode* rr = new TreeNode(4);
+    // root->left = l;
     root->right = r;
     r->right = rr;
     vector<int> result;
@@ -305,7 +307,10 @@ void test_palidrome_min_cut() {
     // int result = palindrome_minCut(str);
     // int result = palindrome_minCut_v2(str);
     int result = dp::palindrome_minCut(str);
-    printf("result:%d\n", result);
+    printf("result %s: %d\n", str.c_str(), result);
+    str = "leaet";
+    int result = dp::palindrome_minCut(str);
+    printf("result %s: %d\n", str.c_str(), result);
 }
 
 void print_surroundReigon(vector<vector<char> >& board) {
@@ -521,7 +526,7 @@ void test_haspathsum() {
 /*
 25. 快速排序，堆排序
 快排： 先从j开始，while(arr[j]<=ref&& i<j)j--; arr[j]=arr[i];
-堆排序： 先构建最大堆。从k=2/length-1-->0调整堆的顺序；
+堆排序： 先构建最大堆。从k=length/2-1-->0调整堆的顺序；
 然后依次从length-1->1, 交换arr[0],arr[i]的值，调整堆的顺序；
 heap_modify: 注意dad=start，son=2*dad+1; while(son<=end) {
     找到左右子节点最大的一个，如果son的值大于dad的交换两者，dad=son；son=2*dad+1；
@@ -927,7 +932,7 @@ void test_three_sum() {
 }
 
 /*
-46. 田忌赛马
+46. 田忌赛马 参考：https://leetcode.cn/problems/advantage-shuffle/solution/you-shi-xi-pai-by-leetcode-solution-sqsf/
 1.对A，B进行排序。2.注意B中可能存在重复的元素。
 if A[j]> B[i]:match_map[B[i]].push(A[j]);
 else: unmatch.push(A[j]);
@@ -3589,7 +3594,7 @@ int main() {
     // test_complete_circuit();
     // test_clone_graph();
     // test_palidrome();
-    // test_palidrome_min_cut();
+    test_palidrome_min_cut();
     // test_surroundRegion();
     // test_sum_number_binary_tree();
     // test_longest_consecutive();
@@ -3811,7 +3816,7 @@ int main() {
     // test_permute_thot50();
     // test_subset_thot50();
     // test_generate_parenthesis_thot50();
-    test_superEggDrop();
+    // test_superEggDrop();
 
     return 0;
 }
