@@ -309,7 +309,7 @@ void test_palidrome_min_cut() {
     int result = dp::palindrome_minCut(str);
     printf("result %s: %d\n", str.c_str(), result);
     str = "leaet";
-    int result = dp::palindrome_minCut(str);
+    result = dp::palindrome_minCut(str);
     printf("result %s: %d\n", str.c_str(), result);
 }
 
@@ -1263,6 +1263,7 @@ void test_zigzag_level_order() {
 
 /*
 67. 根据wordlist 从start过渡到end
+原题链接：https://leetcode.cn/problems/word-ladder/
 1.先使用queue，bfs判断是否可以过渡到end，并记录path_map[curr].push_back(curr_in)
 2.dfs（回溯）根据path_map,从end出发，反向遍历到start。
 */
@@ -1294,6 +1295,7 @@ void test_eval_rpn() {
 
 /*
 69. 求一段高低不同的洼地，最多能存多少雨水。类似32. 
+题目链接：https://leetcode.cn/problems/trapping-rain-water/
 使用栈维护一个降序队列，当curr_num>stack.top()时，
 栈顶元素为下届，当前面积：left = stack.pop().top()（i-left-1）*(min(curr_num, nums[left])-nums[low_idx])
 直到栈顶元素大于curr_num或为null。
@@ -1357,6 +1359,8 @@ void test_merge_k_list() {
 
 /*
 72. 不使用除法完成除法运算。注意数值越界的问题
+题目链接：https://leetcode.cn/problems/divide-two-integers/
+思路：1）类似快速幂，求出最大的结果上限；2）通过>>运算依次递减
 */
 void test_divide() {
     int dividend = 2147483647; //2147483647;
@@ -1652,6 +1656,7 @@ void test_longest_increaseing_path() {
 
 /*
 88. 从shorter, longer中选取k个数，求所有可能出现的和
+题目链接：https://leetcode.cn/problems/diving-board-lcci/
 */
 void test_diving_board() {
     int shorter = 1;
@@ -1743,6 +1748,7 @@ void test_subsets() {
 
 /*
 92. 找出字符串中出现超过１次的长度超过或等于１０个字符的子串
+题目链接：https://leetcode.cn/problems/repeated-dna-sequences/
 １．从ｉ=0->n-9; 判断sub 是否在map中，如果在则重复出现，否则将新字符串放入map, 注意避免重复加入相同子串．
 ２．使用比特位维护１０个位置的字符标志，如A:0, C;1, G:2, T:3, 则长度为１０的字符串，需要用２０比特位即可表示．
 初始化构建前９个比特位的数值：　for(i=0; i<9; i++) curr = curr<<2; curr = curr| char2num[s[i]]
@@ -1760,6 +1766,7 @@ void test_find_repeated_dnasequence() {
 
 /*
 93. LRU 实现, 要求查找，插入均为O(1), 使用hash map+双向链表．
+题目链接：https://leetcode.cn/problems/lru-cache/
 １．双向链表用于从头插入，从尾部删除，同时为了映射回map, 双向链表应该保留key, val.
 2. hash map用于查找，key--> 对应节点指针．可使用ｕnordered_map + list　实现．注意　不能使用ｖector作为list，
 因为ｖector会自动扩展空间，并把原始数据复制到新空间去，对于map中记录对于指针的话，map中原始指针会失效．
@@ -1811,6 +1818,7 @@ void test_mystack() {
 
 /**
  * 95. 实现Trie前缀树　类定义的变量有: Trie* tries[26] 字母a-z的映射，　isEnd判断该点是否为单词的末尾．
+ * 题目链接：https://leetcode.cn/problems/implement-trie-prefix-tree/
  * 主要在insert的时候要判断tries[word[i]-'a']是否为null, 不为null，则直接往下走，为空则new tire 
 */
 void test_trie() {
@@ -1841,6 +1849,7 @@ void test_findword() {
 
 /**
  * 97. 画出天际线：　用线段树．
+ * 题目链接：https://leetcode.cn/problems/the-skyline-problem/
  * １．先对所有的点进行排序<x, height>,　其中开始节点的height为负数．排序后的节点按照横坐标递增．
  * ２．遍历排序后的点，如果为开始节点则将高度放入最大堆中，结束点则将该高度删除．
  * ３．得到当前堆中最大高度，如果当前最大高度和先前最大高度不同，则该点是关键点．
@@ -1888,16 +1897,18 @@ void test_numarray() {
 
 /**
  * 99. 求未排序数组的逆序对．
+ * 题目讲解：https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solutions/216984/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/
  * 1. 使用归并排序，在对各自排好序的nums1,nums2求逆序对，然后再对num1, num2进行merge.　其中num1所有元素均小于num2;
 */
 void test_reverse_pairs() {
     std::vector<int> nums = {1,3,2,3,1}; //{2,4,3,5,1}; // {1,3,2,3,1};
-    // int result = sort::merge_sort_reverse_pair(nums, 0, nums.size()-1);
-    int result = line_tree_alg::reversePairs(nums);
+    int result = sort::merge_sort_reverse_pair(nums, 0, nums.size()-1);
+    // int result = line_tree_alg::reversePairs(nums);
     printf("result:%d\n", result);
 }
 /**
  * 100. 判断先手是否能赢, 找规律当n是４的倍数的时候，会输，其他情况会赢．如n=4的时候，无论拿１，２，３，后手都会全部拿走．n=5时，先手拿1,后手无论拿几都会留一个．
+ * 题目链接：https://leetcode.cn/problems/nim-game/
  * ２.dp思路．　假设dp[ｉ]表示ｉ个数时，先手的输赢状态，则dp[i]等于true的条件为，dp[i-3],dp[i-2],dp[i-1]中有一个是输，
  * 即dp[i]=!(dp[i-3]&dp[i-2]&dp[i-1])
  * 
@@ -1910,6 +1921,7 @@ void test_can_win_nim() {
 /**
  * 101. 猜数字. 求完成游戏需要的最小数值, dp方法，dp[i][j]表示完成i->j的猜字游戏需要的money．则dp[i][j]至少需要　for k=i->j, min(k + max(dp[i][k-1], dp[k+1][j])),
  * 里面的max表示设定的数字可能在左边，也可能在右边，所以取最大值．
+ * 题目链接：https://leetcode.cn/problems/guess-number-higher-or-lower-ii/description/
 */
 void test_get_menoy_account() {
     int result = minimization_alg::getMoneyAmount(10);
@@ -1965,6 +1977,7 @@ void test_check_straightline() {
 
 /**
  * 106. 访问所有点需要的最短距离
+ * 题目链接：https://leetcode.cn/problems/shortest-path-visiting-all-nodes/
 */
 void test_min_time_visitedall() {
     std::vector<std::vector<int>> points = {{1,1},{3,4},{-1,0}};
@@ -3594,7 +3607,7 @@ int main() {
     // test_complete_circuit();
     // test_clone_graph();
     // test_palidrome();
-    test_palidrome_min_cut();
+    // test_palidrome_min_cut();
     // test_surroundRegion();
     // test_sum_number_binary_tree();
     // test_longest_consecutive();
@@ -3650,7 +3663,7 @@ int main() {
     // test_build_tree();
     // test_is_symmetric();
     // test_zigzag_level_order();
-    // test_ladder_length_bfs();
+    test_ladder_length_bfs();
     // test_eval_rpn();
     // test_trap();
     // test_find_k_largest();
