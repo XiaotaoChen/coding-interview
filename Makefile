@@ -8,7 +8,7 @@ SRC = test_huawei.cc $(SRC_COM)
 # $?  表示比目标还要新的依赖文件列表
 
 CXX = g++
-CXXFLAGS = -std=c++11 -g -O1
+CXXFLAGS = -std=c++11 -g -O0
 TARGET = test
 
 all: $(TARGET)
