@@ -1,10 +1,6 @@
-# SRC_COM = $(wildcard huawei_online/*.cc)
+SRC_COM = $(wildcard huawei_online/*.cc)
 
-# SRC = test_huawei.cc $(SRC_COM)
-
-SRC_COM = $(wildcard hot_100/*.cc) $(wildcard thot_50/*.cc)
-
-SRC = test_hot.cc $(SRC_COM)
+SRC = test_huawei.cc $(SRC_COM)
 
 # $@  表示目标文件
 # $^  表示所有的依赖文件
