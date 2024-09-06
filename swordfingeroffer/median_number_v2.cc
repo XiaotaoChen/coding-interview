@@ -40,6 +40,34 @@ float median_number_V2(std::vector<int>& arr) {
     else return float(max_heap.front() + min_heap.front())/2;
 }
 
+float median_number_multiSet_V3(std::vector<int>& arr) {
+    std::multiset<int> min_heap;
+    std::multiset<int, std::greater<int>> max_heap;
+    int count = 0;
+    for (int i=0; i<arr.size(); i++) {
+        count++;
+        int num = arr[i];
+        if (i%2==0) {
+            if (!min_heap.empty() && num > *min_heap.begin()) {
+                min_heap.insert(num);
+                num = *min_heap.begin();
+                min_heap.erase(min_heap.begin());
+            }
+            max_heap.insert(num);
+        }
+        else {
+            if (!max_heap.empty() && num < *max_heap.begin()) {
+                max_heap.insert(num);
+                num = *max_heap.begin();
+                max_heap.erase(max_heap.begin());
+            }
+            min_heap.insert(num);
+        }
+    }
+    if (count%2==1) return *max_heap.begin();
+    return (*max_heap.begin() + *min_heap.begin()) / 2;
+}
+
 
 float median_number_V3(std::vector<int>& arr) {
     int count = 0;

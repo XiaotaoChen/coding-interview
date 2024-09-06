@@ -52,21 +52,36 @@ std::vector<int> TopKminus_with_heap(std::vector<int>& arr, int k) {
     return result;
 }
 
-std::vector<int> TopKminus_with_makeheap(std::vector<int>& arr, int k) {
-    if (arr.size()==0|| arr.size() <= k) return arr;
-    std::vector<int> result(arr.begin(), arr.begin()+k);
-    std::make_heap(result.begin(), result.end());
+std::vector<int> TopKminus_with_makeheapV2(std::vector<int>& arr, int k) {
+    if (arr.size() <= k) return arr;
+    std::vector<int> heap(arr.begin(), arr.begin()+k);
+    std::make_heap(heap.begin(), heap.end(), std::less<int>());
     for (int i=k; i<arr.size(); i++) {
-        if (arr[i]<result[0]) {
-            // swap<int>(result[0], arr[i]);
-            // result[0] = arr[i];
-            // std::make_heap(result.begin(), result.end());
-            std::pop_heap(result.begin(), result.end()); result.pop_back();
-            result.push_back(arr[i]); std::push_heap(result.begin(), result.end());
+        if (arr[i] < heap.front()) {
+            std::pop_heap(heap.begin(), heap.end()); heap.pop_back();
+            heap.push_back(arr[i]); std::push_heap(heap.begin(), heap.end());
         }
     }
-    return result;
+    return heap;
 }
+
+
+
+// std::vector<int> TopKminus_with_makeheap(std::vector<int>& arr, int k) {
+//     if (arr.size()==0|| arr.size() <= k) return arr;
+//     std::vector<int> result(arr.begin(), arr.begin()+k);
+//     std::make_heap(result.begin(), result.end());
+//     for (int i=k; i<arr.size(); i++) {
+//         if (arr[i]<result[0]) {
+//             // swap<int>(result[0], arr[i]);
+//             // result[0] = arr[i];
+//             // std::make_heap(result.begin(), result.end());
+//             std::pop_heap(result.begin(), result.end()); result.pop_back();
+//             result.push_back(arr[i]); std::push_heap(result.begin(), result.end());
+//         }
+//     }
+//     return result;
+// }
 
 std::vector<int> TopKminus_with_set(std::vector<int>& arr, int k) {
     if (arr.size() == 0 || arr.size() <= k) return arr;

@@ -9,6 +9,7 @@
 
 namespace huawei_online
 {
+// 所有题目链接：https://www.nowcoder.com/exam/oj/ta?tpId=37
 
 /*
     字符串

@@ -22,16 +22,24 @@ std::string serialize(TreeNode* root) {
     return oss;
 }
 
+// void deserialize_dfs(std::string& oss, TreeNode** root, int& idx) {
+//     idx++;
+//     if (idx> oss.length()) return;
+//     if (oss[idx-1] == '#' ) {
+//         *root = nullptr;
+//         return;
+//     }
+//     *root = new TreeNode(oss[idx-1]-'0');
+//     deserialize_dfs(oss, &((*root)->left), idx);
+//     deserialize_dfs(oss, &((*root)->right), idx);
+// }
+
 void deserialize_dfs(std::string& oss, TreeNode** root, int& idx) {
-    idx++;
-    if (idx> oss.length()) return;
-    if (oss[idx-1] == '#' ) {
-        *root = nullptr;
-        return;
-    }
-    *root = new TreeNode(oss[idx-1]-'0');
-    deserialize_dfs(oss, &((*root)->left), idx);
-    deserialize_dfs(oss, &((*root)->right), idx);
+    if (idx >= oss.length()) return;
+    if (oss[idx] == '#') return;
+    *root = new TreeNode(oss[idx] - '0');
+    deserialize_dfs(oss, &((*root)->left), ++idx);
+    deserialize_dfs(oss, &((*root)->right), ++idx);
 }
 
 TreeNode* deserialize(std::string& oss) {

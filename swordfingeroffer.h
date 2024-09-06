@@ -150,6 +150,7 @@ int MoreThanHalf(std::vector<int>& arr);
 std::vector<int> TopKminus(std::vector<int>& arr, int k);
 std::vector<int> TopKminus_with_heap(std::vector<int>& arr, int k);
 std::vector<int> TopKminus_with_makeheap(std::vector<int>& arr, int k);
+std::vector<int> TopKminus_with_makeheapV2(std::vector<int>& arr, int k);
 std::vector<int> TopKminus_with_set(std::vector<int>& arr, int k);
 
 // interview 41 流数据的中位数
@@ -158,6 +159,7 @@ int median_number_with_set(std::vector<int>& arr);
 
 float median_number_V2(std::vector<int>& arr);
 float median_number_V3(std::vector<int>& arr);
+float median_number_multiSet_V3(std::vector<int>& arr);
 
 
 // interview 42 连续子数组的最大和
