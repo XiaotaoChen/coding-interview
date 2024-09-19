@@ -65,3 +65,26 @@ int search::maxProfit_v3(std::vector<int> &prices) {
     }
     return sell2;
 }
+
+// 参考：https://www.cnblogs.com/lillcol/p/14218940.html 买卖股票的最佳时机(最多交易两次)
+int search::max_profit_2(std::vector<int>& nums) {
+    if (nums.size() < 2) return 0;
+    int n = nums.size();
+    // pair.first,second 表示手上没有股票，手上有股票；
+    // dp[i][j] 表示前i天做第j次交易。
+    std::vector<std::vector<std::pair<int, int>>> dp(n+1, std::vector<std::pair<int, int>>(3, {INT32_MIN>>1, INT32_MIN>>1}));
+
+    dp[0][0].first = 0;
+    dp[0][0].second = -nums[0];
+
+    for(int i=1; i<n;i++) {
+        dp[i][0].first = 0; // 第0次操作，没有股票
+        dp[i][1].first = std::max(dp[i-1][1].first, dp[i-1][0].second + nums[i]);
+        dp[i][2].first = std::max(dp[i-1][2].first, dp[i-1][1].second + nums[i]);
+        // 第0次操作，手上有股票
+        dp[i][0].second = std::max(dp[i-1][0].second, dp[i-1][0].first - nums[i]);
+        dp[i][1].second = std::max(dp[i-1][1].second, dp[i-1][1].first - nums[i]);
+        dp[i][2].second = 0; //第2次操作，手上有股票，不合法
+    }
+    return dp[n-1][2].first;
+}

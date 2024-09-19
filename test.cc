@@ -404,7 +404,8 @@ sell2=max(sell2, buy2+prices[i])
 void test_maxprofix() {
     int arr[] = {3,2,1,3,4,5,4,6,1,7};
     std::vector<int> vec(arr, arr+10);
-    int result = search::maxProfit_v3(vec);
+    // int result = search::maxProfit_v3(vec);
+    int result = search::max_profit_2(vec);
     printf("result:%d\n", result);
 }
 

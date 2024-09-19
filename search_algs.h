@@ -43,6 +43,7 @@ int maxProfit(std::vector<int> &prices);
 int maxProfit_v2(std::vector<int> &prices);
 
 int maxProfit_v3(std::vector<int> &prices);
+int max_profit_2(std::vector<int>& nums);
 
 // https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
 int maxProfit_v4(std::vector<int>& prices);
