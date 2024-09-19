@@ -106,3 +106,89 @@ bool search::judgePoint24_v2(std::vector<double>& nums, char* op_types) {
     }
     return false; 
 }
+
+double search::calculate_v2(double a, double b, int type) {
+    double result = 0;
+    switch (type)
+    {
+    case 0:{
+        result = a + b;
+        break;
+    }
+    case 1: {
+        result = a - b;
+        break;
+    }
+    case 2: {
+        result = a * b;
+        break;
+    }
+    case 3: {
+        if (b >-1e-6 && b <1e-6) {
+            result = -1;
+        }
+        result = a / b;
+        break;
+    }
+    default:
+        break;
+    }
+    return result;
+}
+
+bool search::judgePoint24_v3(std::vector<double>& nums, char* op_types, std::string& res) {
+    if(nums.size() == 1) {
+        if ((nums[0]-24)>-1e-6 && (nums[0]-24)<1e-6) return true;
+        return false;
+    }
+    int size = nums.size();
+    for (int i=0; i<size-1; i++) {
+        for (int j=i+1; j<size; j++) {
+            std::vector<double> remains;
+            for (int k=0; k<size; k++) {
+                if (k!=i && k!=j) {
+                    remains.push_back(nums[k]);
+                }
+            }
+            for (int op_id = 0; op_id <4; op_id++) {
+                // double val = calculate_v2(nums[i],nums[j], op_id);
+                // remains.push_back(val);
+                // bool flag = judgePoint24_v3(remains, op_types, res);
+                // if (flag){
+                //     return true;
+                // }
+                // remains.pop_back(); 
+                // if (op_id == 1 || op_id == 3) {
+                //     remains.push_back(calculate_v2(nums[j],nums[i], op_id));
+                //     if (judgePoint24_v3(remains, op_types, res)) return true;
+                //     remains.pop_back();
+                // }
+                double val = calculate_v2(nums[i], nums[j], op_id);
+                remains.insert(remains.begin(), val);
+                std::string new_res = res + ' ' + std::to_string(nums[i]) + \
+                                      op_types[op_id] + std::to_string(nums[j]);
+                bool isOk = judgePoint24_v3(remains, op_types, new_res);
+                if (isOk) {
+                    res = new_res;
+                    return true;
+                }
+                remains.erase(remains.begin());
+                if (op_id == 1 || op_id == 3) {
+                    // remains.clear();
+                    val = calculate_v2(nums[j], nums[i], op_id);
+                    remains.insert(remains.begin(), val);
+                    std::string new_res = res + ' ' + std::to_string(nums[j]) + \
+                                        op_types[op_id] + std::to_string(nums[i]);
+                    bool isOk = judgePoint24_v3(remains, op_types, new_res);
+                    if (isOk) {
+                        res = new_res;
+                        return true;
+                    }
+                    remains.erase(remains.begin());
+                }
+            }
+        }
+    }
+    return false;
+}
+

@@ -30,7 +30,7 @@ void merge_set::solve(std::vector<std::vector<char>>& board) {
         y = pair.second;
         board[x][y] = 'A';
         for (int i=0; i<directions.size(); i++) {
-            if (x+directions[i][0] >0 && x+directions[i][0]<row && 
+            if (x+directions[i][0] >=0 && x+directions[i][0]<row && 
                 y+directions[i][1]>=0 && y+directions[i][1]<col && 
                 board[x+directions[i][0]][y+directions[i][1]]=='O') {
                 s.push({x+directions[i][0], y+directions[i][1]});

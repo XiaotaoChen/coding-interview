@@ -47,6 +47,7 @@ int max_profit_2(std::vector<int>& nums);
 
 // https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
 int maxProfit_v4(std::vector<int>& prices);
+int maxProfit_v5(std::vector<int>& prices);
 
 // https://www.nowcoder.com/practice/fdbd05d647084fcf9be78444e231998b
 void populating_next_right_pointers_in_each_node(TreeLinkNode *root);
@@ -92,6 +93,7 @@ std::string valid_string(std::string str);
 
 // https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
 int largestRectangleArea(std::vector<int>& heights);
+int largestRectangleAreaV2(std::vector<int>& heights);
 
 // https://leetcode-cn.com/problems/container-with-most-water/
 int maxArea(std::vector<int>& height);
@@ -125,6 +127,7 @@ std::vector<std::string> splitstr(std::string path);
 std::string simplifyPath_V2(std::string path);
 
 ListNode* reverseBetween(ListNode* head, int m, int n);
+ListNode* reverseBetweenV2(ListNode* head, int m, int n);
 
 
 // https://leetcode-cn.com/problems/24-game/
@@ -133,8 +136,12 @@ double calculate(double a , double b, char type);
 
 bool judgePoint24_v2(std::vector<double>& nums, char* op_types);
 
+double calculate_v2(double a , double b, int type);
+bool judgePoint24_v3(std::vector<double>& nums, char* op_types, std::string& res);
+
 // https://leetcode-cn.com/problems/spiral-matrix/
 std::vector<int> spiralOrder(std::vector<std::vector<int>>& matrix);
+std::vector<int> spiralOrderV2(std::vector<std::vector<int>>& matrix);
 
 std::vector<std::vector<int>> generateMatrix(int n);
 
@@ -149,6 +156,7 @@ std::vector<std::vector<int>> threeSum_v3(std::vector<int>& nums);
 // https://leetcode-cn.com/problems/rotate-image/
 void rotate(std::vector<std::vector<int>>& matrix);
 void rotate_v2(std::vector<std::vector<int>>& matrix);
+void rotate_v3(std::vector<std::vector<int>>& matrix);
 
 // https://leetcode-cn.com/problems/group-anagrams/
 std::unordered_map<char, int> get_ch_map(std::string& str);
@@ -156,6 +164,7 @@ std::map<char, int> get_ch_map2(std::string& str);
 std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs);
 
 std::vector<std::vector<std::string>> groupAnagrams_v2(std::vector<std::string>& strs);
+std::vector<std::vector<std::string>> groupAnagrams_v3(std::vector<std::string>& strs);
 
 } // namespace search
 

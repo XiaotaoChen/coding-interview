@@ -55,6 +55,56 @@ std::vector<int> search::spiralOrder(std::vector<std::vector<int>>& matrix) {
     return result;
 }
 
+std::vector<int> search::spiralOrderV2(std::vector<std::vector<int>>& matrix) {
+    int row = matrix.size();
+    int col = matrix[0].size();
+    if (row == 1) return matrix[0];
+
+    std::vector<int> res;
+    if (col == 1) {
+        for(int i=0; i<row; i++) {
+            res.push_back(matrix[0][0]);
+        }
+    }
+    int round = std::min(row+1, col+1) / 2;
+    for (int round_id=0; round_id<round; round_id++) {
+        int i = round_id;
+        int j = round_id;
+        int end_row = row - round_id;
+        int end_col = col - round_id;
+        // left --> right
+        while(j<end_col) {
+            res.push_back(matrix[i][j]);
+            j++;
+        }
+        // top --> down
+        i = round_id+1;
+        j = end_col-1;
+        if (i >= end_row) break;
+        while(i<end_row) {
+            res.push_back(matrix[i][j]);
+            i++;
+        }
+        // right --> left
+        i = end_row-1;
+        j = end_col-2;
+        if (j < round_id) break;
+        while(j>=round_id) {
+            res.push_back(matrix[i][j]);
+            j--;
+        }
+        // down --> top
+        i = end_row - 2;
+        j = round_id;
+        if (i <= round_id) break;
+        while(i > round_id) {
+            res.push_back(matrix[i][j]);
+            i--;
+        }
+    }
+    return res;
+}
+
 std::vector<std::vector<int>> search::generateMatrix(int n) {
     if (n ==0) {
         std::vector<std::vector<int>> result_vec;

@@ -19,4 +19,22 @@ void rotate_v2(std::vector<std::vector<int>>& matrix) {
     }
 }
 
+void rotate_v3(std::vector<std::vector<int>>& matrix) {
+    int n = matrix.size();
+    if (n < 2) return;
+    // sysm
+    for (int i=1; i<n; i++) {
+        for (int j = 0; j<i; j++) {
+            std::swap<int>(matrix[i][j], matrix[j][i]);
+        }
+    }
+    // flip
+    for (int i=0; i<n; i++) {
+        for (int j=0; j<n/2; j++) {
+            std::swap<int>(matrix[i][j], matrix[i][n-j-1]);
+        }
+    }
+    return;
+}
+
 } // namespace search

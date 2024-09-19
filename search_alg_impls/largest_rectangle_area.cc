@@ -39,3 +39,48 @@ int search::largestRectangleArea(std::vector<int>& heights) {
 
     return result;
 }
+
+int search::largestRectangleAreaV2(std::vector<int>& heights) {
+    if (heights.size() == 0) return 0;
+    if (heights.size() == 1) return heights[0];
+    std::stack<int> idxs;
+    int res = 0;
+    idxs.push(heights[0]);
+
+    for (int i=1; i<heights.size(); i++) {
+        if (heights[i] >= heights[idxs.top()]) {
+            idxs.push(i);
+        }
+        else {
+            while(!idxs.empty() && (heights[i] < heights[idxs.top()])) {
+                int h_idx = idxs.top(); idxs.pop();
+                int len = 0;
+                if (idxs.empty()) {
+                    len = i - 0 -1;
+                }
+                else {
+                    len = i - idxs.top() - 1;
+                }
+                int area = len * heights[h_idx];
+                res = std::max(res, area);
+            }
+            idxs.push(i);
+        }
+    }
+
+    int size = heights.size();
+    while(!idxs.empty()) {
+        int h_idx = idxs.top(); idxs.pop();
+        int len = 0;
+        if (idxs.empty()) {
+            len = size - 0 -1;
+        }
+        else {
+            len = size - idxs.top() - 1;
+        }
+        int area = len * heights[h_idx];
+        res = std::max(res, area);
+    }
+    return res;
+}
+

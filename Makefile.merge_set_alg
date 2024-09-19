@@ -2,9 +2,9 @@
 
 # SRC = test_huawei.cc $(SRC_COM)
 
-SRC_COM = $(wildcard search_alg_impls/*.cc)
+SRC_COM = $(wildcard merge_set_alg_impls/*.cc)
 
-SRC = test_search.cc $(SRC_COM)
+SRC = test_merge_set.cc $(SRC_COM)
 
 # $@  表示目标文件
 # $^  表示所有的依赖文件

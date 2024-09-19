@@ -38,10 +38,10 @@ int NumArray_v3::sum_range_line_tree(SegNode* root, int left, int right) {
     int mid = (root->begin + root->end) /2;
     int ans = 0;
     if (left<=mid) {
-        ans += sum_range_line_tree(root->left, left, right);
+        ans += sum_range_line_tree(root->left, left, mid);
     }
     if (right > mid) {
-        ans += sum_range_line_tree(root->right, left, right);
+        ans += sum_range_line_tree(root->right, mid+1, right);
     }
     return ans;
 }

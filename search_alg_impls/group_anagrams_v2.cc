@@ -23,4 +23,21 @@ std::vector<std::vector<std::string>> groupAnagrams_v2(std::vector<std::string>&
     return result;
 }
 
+std::vector<std::vector<std::string>> groupAnagrams_v3(std::vector<std::string>& strs) {
+    std::unordered_map<std::string, int> map_ids;
+    std::vector<std::vector<std::string>> res;
+    for (const auto& str: strs) {
+        std::string tmp = str;
+        std::sort(tmp.begin(), tmp.end());
+        if (map_ids.find(tmp) != map_ids.end()) {
+            res[map_ids[tmp]].push_back(str);
+        }
+        else {
+            map_ids[tmp] = res.size();
+            res.push_back({str});
+        }
+    }
+    return res;
+}
+
 } // namespace search

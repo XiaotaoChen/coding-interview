@@ -35,3 +35,45 @@ ListNode* search::reverseBetween(ListNode* head, int m, int n) {
     }
     return new_head->next;
 }
+
+ListNode* search::reverseBetweenV2(ListNode* head, int m, int n) {
+    if (m == n || head == nullptr) return head;
+    ListNode* pre_head = new ListNode(-1);
+    pre_head->next = head;
+    ListNode* pre = pre_head;
+    ListNode* curr = pre_head->next;
+    int curr_num = 0;
+
+    ListNode* pre_m_node = nullptr;
+    ListNode* m_node = nullptr;
+
+    while(curr != nullptr && curr_num <=n) {
+        if (curr_num == m) {
+            pre_m_node = pre;
+            m_node = curr;
+            pre = curr;
+            curr = curr->next;
+        }
+        else if (curr_num >m && curr_num < n) {
+            pre = curr;
+            curr = curr->next;
+            pre->next = pre_m_node->next;
+            pre_m_node->next = pre;
+        }
+        else if (curr_num == n) {
+            pre = curr;
+            curr = curr->next;
+            m_node->next = curr;
+            pre->next = pre_m_node->next;
+            pre_m_node->next = pre;
+        }
+        else {
+            pre = curr;
+            curr = curr->next;
+        }
+        curr_num++;
+    }
+    head = pre_head->next;
+    delete pre_head;
+    return head;
+}
